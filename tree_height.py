@@ -1,41 +1,48 @@
 # python3
 
-import sys
-import threading
+# import sys
+# import threading
 # import numpy
 
 
-def compute_height(n, numbers):
+def compute_height(numbers, n):
     max_height = 0
     for i in range(n):
-        indekss = int(i)
+        indekss = i
         tagad = 1
-        while (numbers[int(indekss)] != -1):
+        while numbers[indekss] != -1:
             tagad = tagad + 1
-            indekss = int(numbers[indekss])
+            indekss = numbers[indekss]
         max_height = max(max_height, tagad)
     return max_height
 
 
-def main():
-    letter = str(input("I or F: "))
+#def main():
+if __name__ == '__main__':
+    letter = input("Enter letter I or F: ")
     if letter == "I" or letter == "i":
-        n = int(input())
+        b = int(input())
         numbers = input()
         numbers = numbers.split()
-        compute_height(n, numbers)
-        print(compute_height(n, numbers))
+        numbers = map(int, numbers)
+        numbers = list(numbers)
+        n = len(numbers)
+        augstums = compute_height(numbers, n)
+        print(augstums)
     elif letter == "F" or letter == "f":
         file = input()
         with open("./test/" + file, mode='r') as fails:
-            n = fails.readline()
+            b = fails.readline()
             numbers = fails.readline()
             numbers = numbers.split()
-        compute_height(n, numbers)
-        print(compute_height(n, numbers))
+            numbers = map(int, numbers)
+            numbers = list(numbers)
+            n = len(numbers)
+            augstums = compute_height(numbers, n)
+            print(augstums)
     else:
-        print("Ievadiet I vai F rakstzīmi: ")
-    pass
+        print("Next time enter I or F value!")
+
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
@@ -43,5 +50,5 @@ def main():
 # sys.setrecursionlimit(10**7)  # max depth of recursion
 # threading.stack_size(2**27)   # new thread will get stack of such size
 # threading.Thread(target=main).start()
-main()
+# main()
 # print(numpy.array([1,2,3]))
